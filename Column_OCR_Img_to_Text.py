@@ -5,8 +5,6 @@ Basic script that:
 1. Preprocesses images for better OCR
 2. Runs Tesseract OCR
 3. Saves results to text files
-
-Start simple, improve incrementally.
 """
 
 import cv2
@@ -156,7 +154,7 @@ class SimpleOCR:
         pil_img = Image.fromarray(processed_img)
         
         # Run OCR with basic configuration
-        text = pytesseract.image_to_string(pil_img, config='--psm 6')
+        text = pytesseract.image_to_string(pil_img, config= '--psm 6 --oem 3')
         
         # Clean the text to remove noise symbols
         cleaned_text = self.clean_text(text)
