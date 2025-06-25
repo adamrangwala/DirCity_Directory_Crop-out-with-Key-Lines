@@ -5,8 +5,6 @@ Basic script that:
 1. Preprocesses images for better OCR
 2. Runs Tesseract OCR
 3. Saves results to text files
-
-Start simple, improve incrementally.
 """
 
 import cv2
