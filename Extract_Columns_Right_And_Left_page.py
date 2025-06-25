@@ -189,7 +189,6 @@ class StructuralLineDetector:
             }
 
             # Display results
-            self._plot_images(processed_images, f'Enhanced {direction.title()} Lines')
             self._plot_images(line_images, f'Detected {direction.title()} Lines')
 
         return results
@@ -238,7 +237,7 @@ class StructuralLineDetector:
 
         plt.tight_layout()
         plt.show(block=False)
-        plt.pause(2)
+        plt.pause(10)
         plt.close()  # Close the plot to avoid blocking the script
 
 
@@ -253,7 +252,7 @@ class CityDirectoryExtractor:
         # Thresholds for page classification and column extraction
         # Left Page 
         self.LEFT_PAGE_AD_THRESHOLD = 0.2  # 20% from left for advertisement detection
-        self.RIGHT_PAGE_AD_THRESHOLD = 0.8  # 80% from left for right page detection
+        self.RIGHT_PAGE_AD_THRESHOLD = 0.75  # 80% from left for right page detection
         self.LEFT_PAGE_TOP_THRESHOLD = 0.33     # 33% from top
         self.BOTTOM_THRESHOLD_LEFT = 0.85   # 85% for left column
         self.BOTTOM_THRESHOLD_RIGHT = 0.75  # 75% for right column
@@ -375,9 +374,9 @@ class CityDirectoryExtractor:
     def _find_rightmost_vertical_line(self, vertical_lines, threshold):
         """Find rightmost vertical line within threshold. This is used for left page ad removal"""
         if vertical_lines is None or len(vertical_lines) == 0:
-            return 0
+            return threshold # Default to threshold if no lines found
             
-        best_x = 0
+        best_x = self.detector.image_shapes[0][1]  # Start with image width
         for line in vertical_lines:
             x = line[0][0]
             if x > threshold and x < best_x:
@@ -457,7 +456,7 @@ class CityDirectoryExtractor:
                 y_sep_top_right = y
                 
             # Bottom separator for right column
-            if y > bottom_threshold_right and y > y_sep_bottom_right and y < img_height:
+            if y > bottom_threshold_left and y > y_sep_bottom_right and y < img_height:
                 y_sep_bottom_right = y
                 
             # Bottom separator for left column
@@ -498,7 +497,7 @@ class CityDirectoryExtractor:
             
             right_column = image[
                 separators['y_sep_top_right']:separators['y_sep_bottom_right'],
-                separators['x_sep']:separators['x_sep_right']
+                separators['x_sep']:separators['x_sep_right']:
             ]
             
             # Store extracted data
@@ -517,7 +516,7 @@ class CityDirectoryExtractor:
             print(f"  Right column size: {right_column.shape}")
             
         return extracted_data
-    
+        
     def _save_column_images(self, image_index, original_path, left_column, right_column):
         """Save extracted columns as separate image files."""
         base_name = Path(original_path).stem
