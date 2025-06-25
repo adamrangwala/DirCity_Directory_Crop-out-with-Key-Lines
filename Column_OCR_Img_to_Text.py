@@ -83,9 +83,72 @@ class SimpleOCR:
         # Ask user if they want to continue
         input("\nPress Enter to continue to next image...")
         plt.close()
-    
+        
+    def clean_text(self, text):
+        """Clean OCR text by removing noise symbols while preserving indentation."""
+        if not text:
+            return text
+        
+        lines = text.split('\n')
+        cleaned_lines = []
+        
+        for line in lines:
+            if not line.strip():  # Skip empty lines
+                continue
+            
+            # First, clean the entire line of noise characters
+            cleaned_line = line
+            allowed_chars_leading = set('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789')
+
+            while cleaned_line and cleaned_line[0] not in allowed_chars_leading:
+                cleaned_line = cleaned_line[1:]
+
+            # Clean from the end, but only keep periods that follow letters/numbers
+            while cleaned_line:
+                last_char = cleaned_line[-1]
+                
+                # If it's a letter or number, keep it and stop
+                if last_char.isalnum():
+                    break
+                
+                # If it's a period, only keep it if the previous character is a letter/number
+                elif last_char == '.' and len(cleaned_line) > 1 and cleaned_line[-2].isalnum():
+                    break
+                
+                # Otherwise, remove it
+                else:
+                    cleaned_line = cleaned_line[:-1]
+            
+            # Now get the clean content
+            content = cleaned_line.strip()
+            
+            if content:
+                cleaned_lines.append(content)
+        
+        # Combine continuation lines with previous entries (OUTSIDE the loop)
+        combined_lines = []
+        for line in cleaned_lines:
+            if combined_lines and self.is_continuation_line(line):
+                # Combine with previous line
+                combined_lines[-1] = combined_lines[-1] + ' ' + line.strip()
+            else:
+                # Start new line
+                combined_lines.append(line)
+
+        return '\n'.join(combined_lines)  # Return combined_lines, not cleaned_lines
+
+    def is_continuation_line(self, line):
+        """Check if a line is a continuation of the previous entry."""
+        first_char = line.strip()[0] if line.strip() else ''
+
+        return (
+            first_char.isdigit() or          # Starts with number (address)
+            first_char.islower() or          # Starts with lowercase letter (continuation)
+            len(line.strip()) < 16           # Very short lines are likely continuations
+        )
+
     def extract_text(self, image_path):
-        """Extract text using Tesseract OCR."""
+        """Extract text using Tesseract OCR and clean artifacts."""
         # Preprocess the image
         processed_img = self.preprocess_image(image_path)
         
@@ -95,7 +158,10 @@ class SimpleOCR:
         # Run OCR with basic configuration
         text = pytesseract.image_to_string(pil_img, config='--psm 6')
         
-        return text
+        # Clean the text to remove noise symbols
+        cleaned_text = self.clean_text(text)
+        
+        return cleaned_text 
     
     def save_text_file(self, image_path, text):
         """Save OCR text to a .txt file."""
@@ -181,12 +247,10 @@ class SimpleOCR:
         
         with open(output_file, 'w', encoding='utf-8') as f:
             if left_text:
-                f.write("=== LEFT COLUMN ===\n")
                 f.write(left_text)
-                f.write("\n\n")
+                f.write("\n")
             
             if right_text:
-                f.write("=== RIGHT COLUMN ===\n")
                 f.write(right_text)
         
         print(f"    Saved combined page: {output_file.name}")
