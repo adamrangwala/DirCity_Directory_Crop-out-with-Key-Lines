@@ -11,6 +11,7 @@ import matplotlib.pyplot as plt
 from scipy.ndimage import interpolation as inter
 import os
 from pathlib import Path
+import glob
 
 class StructuralLineDetector:
     """Detects and visualizes structural lines in document images with easy line retrieval."""
@@ -30,9 +31,23 @@ class StructuralLineDetector:
 
     def load_images(self, img_paths):
         """Load multiple images in grayscale."""
-        images = [cv2.imread(path, cv2.IMREAD_GRAYSCALE) for path in img_paths]
+        images = []
+        valid_paths = []
+        
+        for path in img_paths:
+            try:
+                img = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
+                if img is not None:
+                    images.append(img)
+                    valid_paths.append(path)
+                    print(f"Successfully loaded: {Path(path).name}")
+                else:
+                    print(f"Warning: Could not load image: {Path(path).name}")
+            except Exception as e:
+                print(f"Error loading {Path(path).name}: {e}")
+        
         self.image_shapes = [img.shape for img in images]
-        return images
+        return images, valid_paths
 
     def preprocess_image(self, img):
         """Apply blur and edge detection to image."""
@@ -114,7 +129,12 @@ class StructuralLineDetector:
 
     def process_images(self, img_paths, directions=['horizontal', 'vertical']):
         """Process multiple images for structural line detection."""
-        images = self.load_images(img_paths)
+        images, valid_paths = self.load_images(img_paths)
+        
+        if not images:
+            print("No valid images found to process!")
+            return {}
+            
         results = {}
 
         # Initialize detected_lines storage
@@ -189,9 +209,9 @@ class StructuralLineDetector:
             }
 
             # Uncomment BELOW TO Display Separator Results - DEBUGGING
-            # self._plot_images(line_images, f'Detected {direction.title()} Lines')
+            #self._plot_images(line_images, f'Detected {direction.title()} Lines')
 
-        return results
+        return results, valid_paths
 
     def get_lines(self, direction='both', image_index=None):
         """
@@ -252,7 +272,7 @@ class CityDirectoryExtractor:
         # Thresholds for page classification and column extraction
         # Left Page 
         self.LEFT_PAGE_AD_THRESHOLD = 0.2  # 20% from left for advertisement detection
-        self.RIGHT_PAGE_AD_THRESHOLD = 0.75  # 80% from left for right page detection
+        self.RIGHT_PAGE_AD_THRESHOLD = 0.75  # 75% from left for right page detection
         self.LEFT_PAGE_TOP_THRESHOLD = 0.33     # 33% from top
         self.BOTTOM_THRESHOLD_LEFT = 0.85   # 85% for left column
         self.BOTTOM_THRESHOLD_RIGHT = 0.75  # 75% for right column
@@ -262,18 +282,17 @@ class CityDirectoryExtractor:
         Detect if page is left or right based on vertical line positions.
         Left pages typically have advertisements on the left side.
         """
-        vertical_lines = self.detector.get_lines('vertical', image_index)
-        if vertical_lines is None or len(vertical_lines) == 0:
-            return 'unknown'
-            
         img_width = self.detector.image_shapes[image_index][1]
-        left_threshold = int(img_width * self.LEFT_PAGE_AD_THRESHOLD)
+        midpoint_x = int(img_width / 2) # Midpoint of the image width 
         
-        # Count lines in left portion (indicates advertisements on left pages)
-        left_lines = sum(1 for line in vertical_lines if line[0][0] < left_threshold)
-        
-        # If significant vertical lines in left 20%, likely a left page
-        return 'left' if left_lines >= 1 else 'right'
+        vertical_lines = self.detector.get_lines('vertical', image_index)
+
+        vert_separator = self._find_closest_vertical_line(vertical_lines, midpoint_x)
+
+        if vert_separator is None or vert_separator > midpoint_x:
+            return 'left'
+        else:
+            return 'right' 
     
     def find_column_separators(self, image_index, page_type):
         """Find column separator coordinates based on page type."""
@@ -472,6 +491,7 @@ class CityDirectoryExtractor:
             'top_right': y_sep_top_right,
             'bottom_right': y_sep_bottom_right
         }
+        
     def extract_columns(self, image_paths):
         """Extract columns from all images and save as separate files."""
         extracted_data = {}
@@ -489,6 +509,10 @@ class CityDirectoryExtractor:
             # Load original image
             image = cv2.imread(img_path, cv2.IMREAD_GRAYSCALE)
             
+            if image is None:
+                print(f"  Warning: Could not load image for extraction: {Path(img_path).name}")
+                continue
+            
             # Extract columns
             left_column = image[
                 separators['y_sep_top_left']:separators['y_sep_bottom_left'],
@@ -497,7 +521,7 @@ class CityDirectoryExtractor:
             
             right_column = image[
                 separators['y_sep_top_right']:separators['y_sep_bottom_right'],
-                separators['x_sep']:separators['x_sep_right']:
+                separators['x_sep']:separators['x_sep_right']
             ]
             
             # Store extracted data
@@ -558,13 +582,56 @@ class CityDirectoryExtractor:
         plt.close()  # Close the plot to avoid blocking the script
 
 
+def get_image_files(directory_path, extensions=['.jpg', '.jpeg', '.png', '.tiff', '.tif', '.bmp']):
+    """
+    Get all image files from a directory.
+    
+    Args:
+        directory_path: Path to the directory containing images
+        extensions: List of valid image file extensions
+    
+    Returns:
+        List of full paths to image files
+    """
+    directory = Path(directory_path)
+    
+    if not directory.exists():
+        print(f"Error: Directory does not exist: {directory_path}")
+        return []
+    
+    image_files = []
+    for ext in extensions:
+        # Search for files with this extension (case-insensitive)
+        pattern = str(directory / f"*{ext}")
+        image_files.extend(glob.glob(pattern))
+        
+        # Also search for uppercase extensions
+        pattern_upper = str(directory / f"*{ext.upper()}")
+        image_files.extend(glob.glob(pattern_upper))
+    
+    # Remove duplicates and sort
+    image_files = sorted(list(set(image_files)))
+    
+    print(f"Found {len(image_files)} image files in {directory_path}")
+    for img_file in image_files:
+        print(f"  - {Path(img_file).name}")
+    
+    return image_files
+
+
 # Example usage
 if __name__ == "__main__":
-    # Your original image paths
-    IMAGE_PATHS = [
-        'C:\\Users\\rangw\\Dropbox\\HouseNovel\\Application\\2_Phase_1-Trial_Project\\DirCity_Directory_Crop out with Key Lines\\test_images\\1900_0209.jpg',
-        'C:\\Users\\rangw\\Dropbox\\HouseNovel\\Application\\2_Phase_1-Trial_Project\\DirCity_Directory_Crop out with Key Lines\\test_images\\1900_0362.jpg',     
-    ]
+    # Directory containing all images to process (relative to current script location)
+    IMAGE_DIRECTORY = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'test_images')
+    
+    # Get all image files from the directory
+    image_paths = get_image_files(IMAGE_DIRECTORY)
+    
+    if not image_paths:
+        print("No image files found in the specified directory!")
+        exit(1)
+    
+    print(f"\nProcessing {len(image_paths)} images from directory...")
     
     # Initialize detector
     detector = StructuralLineDetector(
@@ -577,15 +644,22 @@ if __name__ == "__main__":
     )
     
     # Process images to detect lines
-    results = detector.process_images(IMAGE_PATHS, directions=['both'])
+    results, valid_paths = detector.process_images(image_paths, directions=['both'])
+    
+    if not valid_paths:
+        print("No valid images were processed!")
+        exit(1)
     
     # Initialize extractor
     extractor = CityDirectoryExtractor(detector, output_dir="extracted_columns")
     
     # Extract columns and save as images
-    extracted_data = extractor.extract_columns(IMAGE_PATHS)
+    extracted_data = extractor.extract_columns(valid_paths)
     
-    # Visualize results
-    extractor.visualize_extraction(extracted_data)
-    
-    print(f"\nExtraction complete! Column images saved in: {extractor.output_dir}")
+    # Visualize results (showing first few images)
+    if extracted_data:
+        extractor.visualize_extraction(extracted_data)
+        print(f"\nExtraction complete! Column images saved in: {extractor.output_dir}")
+        print(f"Successfully processed {len(extracted_data)} images")
+    else:
+        print("No images were successfully processed for column extraction!")
