@@ -18,14 +18,14 @@ This project automates the extraction and digitization of historical city direct
 <img src="example_images/scanned_document.jpg" alt="Scanned Document" width="100%">
 </td>
 <td width="50%" style="font-family: monospace; white-space: pre-line; font-size: 10px;">
-Bergman Emma, cook 416 14th av s e, rms 418 same<br>
-Brick lab H C Akeley Lbr Co, rms 3322 n 3d.
-Brika, dom 2705 Hennepin av.
-Fred J, painter, r 905 13th av s.
-Prederick, cooper Minn L O Paint Co r 243 lith av s.
-Freda, smstrs Madame Boyd, b flat 2 60 Island av w.
-Hannah, dom 2600 3d av gs.
-Harris (Rosen: & Bergman), r 716 Lyn dale av n.
+Bergman Emma, cook 416 14th av s e, rms 418 same <br>
+Brick lab H C Akeley Lbr Co, rms 3322 n 3d. <br>
+Brika, dom 2705 Hennepin av. <br>
+Fred J, painter, r 905 13th av s. <br>
+Prederick, cooper Minn L O Paint Co r 243 lith av s. <br>
+Freda, smstrs Madame Boyd, b flat 2 60 Island av w. <br>
+Hannah, dom 2600 3d av gs. <br>
+Harris (Rosen: & Bergman), r 716 Lyn dale av n. <br>
 Jennie, dom 1928 Stevens av.
 John, dairy 2810 n e Johnson, r same.
 John, lab H C: Akeley Lbr Co, rms 3322
