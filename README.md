@@ -7,6 +7,9 @@ A WIP Python pipeline for digitizing historical Minneapolis city directories fro
 This project automates the extraction and digitization of historical city directory data, transforming scanned directory pages into machine-readable text and structured data.
 
 ### What This Project Does
+At this stage, the project transcribes a scanned 1900 City Directory to text files that list resident entries with industry standard performance:
+- **96.4% Character Accuracy** 
+- **83.5% Word Accuracy**
 
 <table>
 <tr>
@@ -41,20 +44,8 @@ Mary, dom, rms 515 s 4th. <br>
 Mary E (wid John), r 1051 n 3d. <br>
 Mathilda, waiter 138% s 4th. <br>
 Maud H, clk, b 2115 Bloomington av. <br>
-Nels A, harnessmkr S B Loye & Sons rms 1007 Washn av s. <br>
-Nils, lab, b 2017 Washn av s. <br>
-Oscar F (P O Hammer & Co), rms 414 n e Jefferson. <br>
-Wm, lab, r 1911 Bluff. <br>
-Wm, cooper Frank, Tupa, r 2201 n e Marshall. <br>
-Bergmark Adolph, clk C 8S Brackett, b 34 <br>
-Olga A (wid Charles O), mach opr E R <br>
-Ely, b 509 n 4th <br>
-Sylvia, student, b 509 n 4th. <br>
-Bergquist, see also Barquist and Bjurquist. <br>
-Albert, lab, b 521 18th av n. <br>
-Alma A, mach opr Sterling Mnfg Co, b 700 5th av n. <br>
-Amelia (wid Emil), r 309 Plymouth av. <br>
-...
+................
+
 </td>
 </tr>
 </table>
@@ -65,7 +56,7 @@ Amelia (wid Emil), r 309 Plymouth av. <br>
 4. **Structured Output**: Converts raw text into organized, searchable formats
 
 ## 📊 Current Performance
-- Comparing 832 lines, to their ground truth, yields:
+- Comparing 832 lines over 10 pages, to manually verified text, yields:
    - **Character Accuracy**: 96.4%
    - **Word Accuracy**: 83.5%
 - Successfully processes both left and right page formats
