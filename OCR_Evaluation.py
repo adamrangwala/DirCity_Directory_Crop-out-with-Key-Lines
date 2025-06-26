@@ -23,7 +23,7 @@ def detailed_error_analysis_single(ground_truth_file, ocr_output_file, max_lines
     except FileNotFoundError as e:
         print(f"Error: {e}")
         return None
-    
+     
     # Calculate basic metrics
     wer = jiwer.wer(ground_truth, ocr_output)
     cer = jiwer.cer(ground_truth, ocr_output)
