@@ -14,9 +14,9 @@ This project automates the extraction and digitization of historical city direct
 4. **Structured Output**: Converts raw text into organized, searchable formats
 
 ## 📊 Current Performance
-- Comparing 426 lines to their ground truth yields:
+- Comparing 832 lines, to their ground truth, yields:
    - **Character Accuracy**: 96.4%
-   - **Word Accuracy**: 83.4%
+   - **Word Accuracy**: 83.5%
 - Successfully processes both left and right page formats
 - Handles advertisements and irregular layouts 
 
@@ -153,9 +153,9 @@ Based on testing with 1900 Minneapolis directory pages:
 | Metric | Value | Notes |
 |--------|-------|-------|
 | Character Error Rate (CER) | 3.6% | |
-| Word Error Rate (WER) | 16.6% | |
-| Average Word Accuracy | 83.4% | Most OCR on historical docs acheive 70-85% |
-| Average Character Accuracy | 96.8 % | Industry standard 85-95% for historical material |
+| Word Error Rate (WER) | 16.5% | |
+| Average Word Accuracy | 83.5% | Most OCR on historical docs acheive 70-85% |
+| Average Character Accuracy | 96.4 % | Industry standard 85-95% for historical material |
 ## 🔍 Common Issues & Solutions
 
 ### Low OCR Accuracy?
