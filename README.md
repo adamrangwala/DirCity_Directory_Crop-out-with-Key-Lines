@@ -194,8 +194,6 @@ Based on testing with 1900 Minneapolis directory pages:
 
 | Metric | Value | Notes |
 |--------|-------|-------|
-| Character Error Rate (CER) | 3.6% | |
-| Word Error Rate (WER) | 16.5% | |
 | Average Word Accuracy | 83.5% | Most OCR on historical docs acheive 70-85% |
 | Average Character Accuracy | 96.4 % | Industry standard 85-95% for historical material |
 ## 🔍 Common Issues & Solutions
