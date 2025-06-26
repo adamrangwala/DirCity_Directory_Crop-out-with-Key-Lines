@@ -1,10 +1,10 @@
 # Minneapolis City Directory OCR Project
 
-A comprehensive Python pipeline for digitizing historical Minneapolis city directories from 1900, converting scanned images into structured, searchable data.
+A WIP Python pipeline for digitizing historical Minneapolis city directories from 1900, converting scanned images into structured, searchable data.
 
 ## 🎯 Project Overview
 
-This project automates the extraction and digitization of historical city directory data, transforming scanned directory pages into machine-readable text and structured data. Think of it as giving new life to century-old phone books—turning static images into searchable databases of historical residents, addresses, and occupations.
+This project automates the extraction and digitization of historical city directory data, transforming scanned directory pages into machine-readable text and structured data.
 
 ### What This Project Does
 
@@ -14,12 +14,11 @@ This project automates the extraction and digitization of historical city direct
 4. **Structured Output**: Converts raw text into organized, searchable formats
 
 ## 📊 Current Performance
-
-- **Character Accuracy**: 92.7%
-- **Word Accuracy**: 81.7%
-- **Line Accuracy**: 85%+
+- Comparing 426 lines to their ground truth yields:
+   - **Character Accuracy**: 96.4%
+   - **Word Accuracy**: 83.4%
 - Successfully processes both left and right page formats
-- Handles advertisements and irregular layouts
+- Handles advertisements and irregular layouts 
 
 ## 🚀 Quick Start
 
@@ -78,8 +77,8 @@ pip install opencv-python numpy matplotlib scipy pathlib pytesseract Pillow jiwe
 **What it does**: The digital transcriptionist that converts images to text, with special handling for 1900s typography and common scanning artifacts.
 
 Key features:
-- **Advanced Preprocessing**: Noise reduction specifically tuned for historical documents
-- **Smart Text Cleaning**: Removes scanning artifacts while preserving genuine punctuation
+- **Preprocessing**: Noise reduction specifically tuned for historical documents
+- **Text Cleaning**: Removes scanning artifacts while preserving genuine punctuation
 - **Line Continuation Handling**: Properly combines multi-line directory entries
 - **Page Combination**: Merges left and right columns into complete page files
 
@@ -91,6 +90,7 @@ Provides:
 - **Detailed Error Analysis**: Character and word-level accuracy metrics
 - **Common Error Patterns**: Identifies systematic OCR mistakes
 - **Improvement Suggestions**: Specific fixes for the most frequent errors
+   - ex: OCR Mistake: 'r'  -> ground truth: 'b' (15 times)
 
 ## 🎨 Example Output
 
@@ -152,11 +152,10 @@ Based on testing with 1900 Minneapolis directory pages:
 
 | Metric | Value | Notes |
 |--------|-------|-------|
-| Character Error Rate (CER) | 7.3% | Industry standard: <10% for historical docs |
-| Word Error Rate (WER) | 18.3% | Comparable to manual transcription speed |
-| Line Accuracy | 85%+ | Percentage of directory entries captured correctly |
-| Processing Speed | ~2-3 minutes/page | On standard consumer hardware |
-
+| Character Error Rate (CER) | 3.6% | |
+| Word Error Rate (WER) | 16.6% | |
+| Average Word Accuracy | 83.4% | Most OCR on historical docs acheive 70-85% |
+| Average Character Accuracy | 96.8 % | Industry standard 85-95% for historical material |
 ## 🔍 Common Issues & Solutions
 
 ### Low OCR Accuracy?
@@ -180,14 +179,6 @@ Based on testing with 1900 Minneapolis directory pages:
 - **English text only**: No multi-language support
 - **Manual quality review**: High-accuracy applications may need human verification
 - **Fixed page layouts**: Assumes two-column directory format
-
-## 🔮 Future Enhancements
-
-- **Multi-year support**: Adapt to different directory formats across decades
-- **Automated quality scoring**: Flag suspicious entries for review
-- **Historical name linking**: Connect same individuals across multiple years
-- **Geographic validation**: Verify addresses against historical street maps
-- **Web interface**: User-friendly front-end for non-technical users
 
 ## 📚 Documentation
 

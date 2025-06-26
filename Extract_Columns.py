@@ -17,7 +17,7 @@ class StructuralLineDetector:
     """Detects and visualizes structural lines in document images with easy line retrieval."""
 
     def __init__(self, blur_kernel=3, canny_low=100, canny_high=200,
-                 hough_threshold=100, max_line_gap=10, line_thickness=4):
+                 hough_threshold=300, max_line_gap=25, line_thickness=4):
         self.blur_kernel = blur_kernel
         self.canny_low = canny_low
         self.canny_high = canny_high
@@ -65,8 +65,11 @@ class StructuralLineDetector:
 
     def detect_lines(self, enhanced_img, img_shape, direction='horizontal'):
         """Detect lines using Hough transform."""
+
+        filtered_lines = []
+
         if direction == 'horizontal':
-            min_length = img_shape[1] // 4  # width / 4
+            min_length = img_shape[1] // 5  # width / 4
         else:  # vertical
             min_length = int(img_shape[0] * 0.333)  # height third of the height
 
@@ -79,7 +82,23 @@ class StructuralLineDetector:
         if lines is not None:
             lines = self.merge_nearby_lines(lines, direction)
 
-        return lines
+        if direction == 'horizontal':
+            for line in lines:
+                x1, y1, x2, y2 = line[0]
+                angle = np.arctan2(y2 - y1, x2 - x1) * 180 / np.pi
+                if (abs(angle) < 20 or abs(angle) > 160) and y1 > img_shape[0] * 0.05 and \
+                   y1 < img_shape[0] * 0.95:  # Horizontal lines
+                    
+                    filtered_lines.append(line)  # Remove non-horizontal lines
+        
+        else:  # vertical
+            for line in lines:
+                x1, y1, x2, y2 = line[0]
+                angle = np.arctan2(y2 - y1, x2 - x1) * 180 / np.pi
+                if abs(abs(angle) - 90) < 20: 
+                    filtered_lines.append(line)
+
+        return filtered_lines
 
     def merge_nearby_lines(self, lines, direction='vertical', merge_distance=10):
         """Merge lines that are very close to each other."""
@@ -209,7 +228,7 @@ class StructuralLineDetector:
             }
 
             # Uncomment BELOW TO Display Separator Results - DEBUGGING
-            self._plot_images(processed_images, f'Detected {direction.title()} Lines')
+            # self._plot_images(processed_images, f'Detected {direction.title()} Lines')
             self._plot_images(line_images, f'Detected {direction.title()} Lines')
 
         return results, valid_paths
@@ -271,12 +290,11 @@ class CityDirectoryExtractor:
         self.output_dir.mkdir(exist_ok=True)
         
         # Thresholds for page classification and column extraction
-        # Left Page 
         self.LEFT_PAGE_AD_THRESHOLD = 0.2  # 20% from left for advertisement detection
         self.RIGHT_PAGE_AD_THRESHOLD = 0.75  # 75% from left for right page detection
         self.LEFT_PAGE_TOP_THRESHOLD = 0.33     # 33% from top
         self.BOTTOM_THRESHOLD_LEFT = 0.85   # 85% for left column
-        self.BOTTOM_THRESHOLD_RIGHT = 0.75  # 75% for right column
+        self.BOTTOM_THRESHOLD_RIGHT = 0.65  # 65% for right column
         
     def detect_page_type(self, image_index):
         """
@@ -311,7 +329,7 @@ class CityDirectoryExtractor:
             separators = self._find_right_page_separators(
                 img_height, img_width, vertical_lines, horizontal_lines
             )
-            
+        print(f"Found separators for {page_type} page: {separators}")
         return separators
     
     def _find_left_page_separators(self, img_height, img_width, vertical_lines, horizontal_lines):
@@ -333,9 +351,9 @@ class CityDirectoryExtractor:
             'x_sep_left': x_sep_left,
             'x_sep_right': img_width,  # Right separator is just to the right of main separator
             'y_sep_top_left': max(0, y_separators['top_left'] - 10),
-            'y_sep_bottom_left': min(img_height, y_separators['bottom_left'] + 10),
+            'y_sep_bottom_left': min(img_height, y_separators['bottom_left'] + 15),
             'y_sep_top_right': max(0, y_separators['top_right'] - 10),
-            'y_sep_bottom_right': min(img_height, y_separators['bottom_right'] + 10),
+            'y_sep_bottom_right': min(img_height, y_separators['bottom_right'] + 15),
         }
     
     def _find_right_page_separators(self, img_height, img_width, vertical_lines, horizontal_lines):
@@ -357,7 +375,7 @@ class CityDirectoryExtractor:
             'x_sep_left': 0,
             'x_sep_right': x_sep_right,
             'y_sep_top_left': max(0, y_separators['top_left'] - 10),
-            'y_sep_bottom_left': min(img_height, y_separators['bottom_left'] + 10),
+            'y_sep_bottom_left': min(img_height, y_separators['bottom_left'] + 15),
             'y_sep_top_right': max(0, y_separators['top_right'] - 10),
             'y_sep_bottom_right': min(img_height, y_separators['bottom_right'] + 15),
         }
@@ -421,12 +439,12 @@ class CityDirectoryExtractor:
         
         y_sep_top_left = 0
         y_sep_bottom_left = int(0.75 * img_height)
-        y_sep_bottom_right = int(0.75 * img_height)
+        y_sep_bottom_right = int(0.85 * img_height)
         
         # Process horizontal lines
         for line in horizontal_lines:
-            y = line[0][1]
-            
+            y = line[0][3]
+            print(f"Processing horizontal line at y={y}")
             # Top separator for left column
             if y < left_page_top_threshold and y > y_sep_top_left:
                 y_sep_top_left = y
@@ -465,12 +483,12 @@ class CityDirectoryExtractor:
         bottom_threshold_right = int(img_height * self.BOTTOM_THRESHOLD_LEFT)
         
         y_sep_top_right = 0
-        y_sep_bottom_left = int(0.75 * img_height)
+        y_sep_bottom_left = int(0.85 * img_height)
         y_sep_bottom_right = int(0.75 * img_height)
         
         # Process horizontal lines
         for line in horizontal_lines:
-            y = line[0][1]
+            y = line[0][3]
             
             # Top separator for right column
             if y < right_page_top_threshold and y > y_sep_top_right:
@@ -646,7 +664,7 @@ if __name__ == "__main__":
     )
     
     # Process images to detect lines
-    results, valid_paths = detector.process_images(image_paths[3:5], directions=['both'])
+    results, valid_paths = detector.process_images(image_paths[-4:-2], directions=['both'])
     
     if not valid_paths:
         print("No valid images were processed!")
