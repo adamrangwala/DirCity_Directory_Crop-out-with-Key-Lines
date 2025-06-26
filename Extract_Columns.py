@@ -68,7 +68,7 @@ class StructuralLineDetector:
         if direction == 'horizontal':
             min_length = img_shape[1] // 4  # width / 4
         else:  # vertical
-            min_length = int(img_shape[0] * 0.5)  # height * 0.5
+            min_length = int(img_shape[0] * 0.333)  # height third of the height
 
         lines = cv2.HoughLinesP(
             enhanced_img, 1, np.pi / 180, self.hough_threshold,
@@ -209,7 +209,8 @@ class StructuralLineDetector:
             }
 
             # Uncomment BELOW TO Display Separator Results - DEBUGGING
-            #self._plot_images(line_images, f'Detected {direction.title()} Lines')
+            self._plot_images(processed_images, f'Detected {direction.title()} Lines')
+            self._plot_images(line_images, f'Detected {direction.title()} Lines')
 
         return results, valid_paths
 
@@ -387,6 +388,7 @@ class CityDirectoryExtractor:
         for line in vertical_lines:
             x = line[0][0]
             if x < threshold and x > best_x:
+                print(f"Found ad separator vertical line at x={x} (threshold={threshold})")
                 best_x = x
         return best_x
     
@@ -644,7 +646,7 @@ if __name__ == "__main__":
     )
     
     # Process images to detect lines
-    results, valid_paths = detector.process_images(image_paths, directions=['both'])
+    results, valid_paths = detector.process_images(image_paths[3:5], directions=['both'])
     
     if not valid_paths:
         print("No valid images were processed!")
