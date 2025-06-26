@@ -17,8 +17,7 @@ This project automates the extraction and digitization of historical city direct
 <td width="50%">
 <img src="example_images/scanned_document.jpg" alt="Scanned Document" width="100%">
 </td>
-<td width="50%">
-</code></pre>
+<td width="50%" style="font-family: monospace; white-space: pre-line; font-size: 10px;">
 Bergman Emma, cook 416 14th av s e, rms 418 same
 Brick lab H C Akeley Lbr Co, rms 3322 n 3d.
 Brika, dom 2705 Hennepin av.
@@ -69,48 +68,7 @@ Ellen (wid Andrew), r 2001 Western av.
 Emil, lab P L Cederberg, b 2631 Washn av n.
 Mrik M, trimmer, r 612 33d av n.
 Frank, mach opr Smith & Wyman, r 745 n e Fillmore.
-Frank, candymkr § Lillibridge-Bremner
-Factory, r 913 n e 2d.
-Frank J, patternmkr Diamond Iron
-Wks, r 2016 Western av.
-Gustav, painter, r 2114 e 22d.
-Gustav, lab, r 2118 e 22d.
-Henry, blksmith M & St L R R, b 21 22% av s.
-Hilda, b 910 Laurel av.
-Hjalmer, cabtmkr Smith & Wyman, r 618 n e Fillmore.
-John, tailor A J Kelly,.r 521 18th av n.
-John, lab, r 720 30th av n.
-John, lab, b 200 s 2d.
-John A, foreman W C Ry, r 922 n 5th.
-John A, helper Am Bridge Co, r 1109 e
-John C, sismn Paris-Murton Co, r 97 n f John E, boilermkr, rr 913 18% av ne.
-J Victor, tchr Johnson School of Music
-Mary, om 2821 Cedar av.
-Nathaniel F, clk City Lbr Co, r 2001 Western av.
-Nels, lab Backus-Brooks Co, rms 2923 Washn av n.
-Nils G. carp Sweatt Mnfg Co, r 2806 e
-Ole, Jab Mpls Gas Lt Co Wks, b 21 19th av s. Se
-Oscar EB, mach opr, b 2118 e 22d.
-Oscar F, foreman Smith & Wyman, r 745 n e Fillmore.
-Otto sorter N S Woolen Mill Co, b 309 5th av s.
-Peter, lab City Water Wks, r 1914 s 8th.
-Peter B, peddler, rms 807 12th av s.
-Signa, mach opr Sterling Mnfg Co, b 700 5th av n.
-Swan, grocer 2531 Washn av n, r same.
-Wm I, stenogr McLeod & Smith, b 2016 Western av.
-Bergren, see also Berggren.
-Charles T, sec The Slocum-Bergren Co yy flat 1 1400 doth av s.
-Frank, carriage mkr Geo F Thompson
-& Son Buggy. Co, r St Louis Pk.
-Gustav, lab, b 1001 e Lake.
-John H, lab, b 3123 15th av s.
-John, paperhnegr, r 751 Washn avn.
-John, lab, b 1001 e Lake.
-Peter. mach opr Shevlin-Carpenter Co b 1415% n 5th.
-Theodore, lab, b 1001 e Lake.
-Bergseng Anton, tab, r 2119 13th av s.
-</code></pre>
-
+...
 </td>
 </tr>
 </table>
