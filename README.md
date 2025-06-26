@@ -17,8 +17,8 @@ This project automates the extraction and digitization of historical city direct
 <td width="50%">
 <img src="example_images/scanned_document.jpg" alt="Scanned Document" width="100%">
 </td>
-<td width="50%" style="font-family: monospace; white-space: pre-line; font-size: 5px;">
-Bergman Emma, cook 416 14th av s e, rms 418 same
+<td width="50%" style="font-family: monospace; white-space: pre-line; font-size: 10px;">
+Bergman Emma, cook 416 14th av s e, rms 418 same<br>
 Brick lab H C Akeley Lbr Co, rms 3322 n 3d.
 Brika, dom 2705 Hennepin av.
 Fred J, painter, r 905 13th av s.
