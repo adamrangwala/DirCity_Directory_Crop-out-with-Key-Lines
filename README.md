@@ -26,48 +26,34 @@ Prederick, cooper Minn L O Paint Co r 243 lith av s. <br>
 Freda, smstrs Madame Boyd, b flat 2 60 Island av w. <br>
 Hannah, dom 2600 3d av gs. <br>
 Harris (Rosen: & Bergman), r 716 Lyn dale av n. <br>
-Jennie, dom 1928 Stevens av.
-John, dairy 2810 n e Johnson, r same.
-John, lab H C: Akeley Lbr Co, rms 3322
-John A, car repr C M & St.P Ry.
-John A, foreman Ankeny Blev, r 1911 1th av s.
-John P, cabtmkr Larson & Nelander, r 436 ne Jefferson.
-Julia, smstrs Madame Boyd, b flat 2 60 Island av w.
-Louis, harnessmkr L Laramee & Co, b 234 14th av s.
-Magnus, mach opr Am Bridge Co, r 1417 s 2d.
-Margaret, smstrs M & I Moeser, b 929 Nicollet av.
-Martin, mach, r 1417 s 2d.
-Mary, dom, rms 515 s 4th.
-Mary E (wid John), r 1051 n 3d.
-Mathilda, waiter 138% s 4th.
-Maud H, clk, b 2115 Bloomington av.
-Nels A, harnessmkr S B Loye & Sons rms 1007 Washn av s.
-Nils, lab, b 2017 Washn av s.
-Oscar F (P O Hammer & Co), rms 414 n e Jefferson.
-Wm, lab, r 1911 Bluff.
-Wm, cooper Frank, Tupa, r 2201 n e Marshall.
-Bergmark Adolph, clk C 8S Brackett, b 34
-Olga A (wid Charles O), mach opr E R
-Ely, b 509 n 4th
-Sylvia, student, b 509 n 4th.
-Bergquist, see also Barquist and Bjurquist.
-Albert, lab, b 521 18th av n.
-Alma A, mach opr Sterling Mnfg Co, b 700 5th av n.
-Amelia (wid Emil), r 309 Plymouth av.
-Andrew, lab Carpenter-Lamb Co, b 3049 ne California.
-Andrew P, carp Soo Shops, r 1814 4th av n.
-Anna. V, dom 1022 s 8th, b 621 18th av n.
-August G, lab Coffin’s Box & Lbr Co, b 1814 4th av n.
-Carl A, watchmkr Sven Swanson, rms 38 n 12th.
-Carl O, lab C A Smith Lbr Co, b 4105 Colfax av n.
-Carl Wy, clk N E Furn & C Co, b 2118 e en eee eee rman
-Bergquist Charles, baker, rms 37 Washn av:s.
-Charles, lab, rms 503 12th av s.
-Edward, lab, b 3029 18th av s.
-Ellen (wid Andrew), r 2001 Western av.
-Emil, lab P L Cederberg, b 2631 Washn av n.
-Mrik M, trimmer, r 612 33d av n.
-Frank, mach opr Smith & Wyman, r 745 n e Fillmore.
+Jennie, dom 1928 Stevens av. <br>
+John, dairy 2810 n e Johnson, r same. <br>
+John, lab H C: Akeley Lbr Co, rms 3322 <br>
+John A, car repr C M & St.P Ry. <br>
+John A, foreman Ankeny Blev, r 1911 1th av s. <br>
+John P, cabtmkr Larson & Nelander, r 436 ne Jefferson. <br>
+Julia, smstrs Madame Boyd, b flat 2 60 Island av w.<br>
+Louis, harnessmkr L Laramee & Co, b 234 14th av s. <br>
+Magnus, mach opr Am Bridge Co, r 1417 s 2d. <br>
+Margaret, smstrs M & I Moeser, b 929 Nicollet av. <br>
+Martin, mach, r 1417 s 2d. <br>
+Mary, dom, rms 515 s 4th. <br>
+Mary E (wid John), r 1051 n 3d. <br>
+Mathilda, waiter 138% s 4th. <br>
+Maud H, clk, b 2115 Bloomington av. <br>
+Nels A, harnessmkr S B Loye & Sons rms 1007 Washn av s. <br>
+Nils, lab, b 2017 Washn av s. <br>
+Oscar F (P O Hammer & Co), rms 414 n e Jefferson. <br>
+Wm, lab, r 1911 Bluff. <br>
+Wm, cooper Frank, Tupa, r 2201 n e Marshall. <br>
+Bergmark Adolph, clk C 8S Brackett, b 34 <br>
+Olga A (wid Charles O), mach opr E R <br>
+Ely, b 509 n 4th <br>
+Sylvia, student, b 509 n 4th. <br>
+Bergquist, see also Barquist and Bjurquist. <br>
+Albert, lab, b 521 18th av n. <br>
+Alma A, mach opr Sterling Mnfg Co, b 700 5th av n. <br>
+Amelia (wid Emil), r 309 Plymouth av. <br>
 ...
 </td>
 </tr>
