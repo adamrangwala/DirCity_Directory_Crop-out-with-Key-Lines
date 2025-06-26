@@ -96,7 +96,7 @@ class SimpleOCR:
             
             # First, clean the entire line of noise characters
             cleaned_line = line
-            allowed_chars_leading = set('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789')
+            allowed_chars_leading = set('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789&')
 
             while cleaned_line and cleaned_line[0] not in allowed_chars_leading:
                 cleaned_line = cleaned_line[1:]
@@ -106,11 +106,11 @@ class SimpleOCR:
                 last_char = cleaned_line[-1]
                 
                 # If it's a letter or number, keep it and stop
-                if last_char.isalnum():
+                if last_char.isalnum() or last_char in '&':
                     break
                 
                 # If it's a period, only keep it if the previous character is a letter/number
-                elif last_char == '.' and len(cleaned_line) > 1 and cleaned_line[-2].isalnum():
+                elif last_char == '.' and len(cleaned_line) > 1 and cleaned_line[-2] in allowed_chars_leading:
                     break
                 
                 # Otherwise, remove it
@@ -138,11 +138,12 @@ class SimpleOCR:
     def is_continuation_line(self, line):
         """Check if a line is a continuation of the previous entry."""
         first_char = line.strip()[0] if line.strip() else ''
-
+        first_word = line.strip().split()[0] if line.strip() else ''
         return (
             first_char.isdigit() or          # Starts with number (address)
             first_char.islower() or          # Starts with lowercase letter (continuation)
-            len(line.strip()) < 16           # Very short lines are likely continuations
+            len(line.strip()) < 16 or        # Very short lines are likely continuations
+            first_word in {'Co', 'same', 'Co,'}     # Common words in company name or address portion
         )
 
     def extract_text(self, image_path):
