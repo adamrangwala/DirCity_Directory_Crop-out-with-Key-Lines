@@ -8,6 +8,113 @@ This project automates the extraction and digitization of historical city direct
 
 ### What This Project Does
 
+<table>
+<tr>
+<th>Original Scanned Document</th>
+<th>OCR Transcribed Text</th>
+</tr>
+<tr>
+<td width="50%">
+<img src="example_images/scanned_document.jpg" alt="Scanned Document" width="100%">
+</td>
+<td width="50%">
+</code></pre>
+Bergman Emma, cook 416 14th av s e, rms 418 same
+Brick lab H C Akeley Lbr Co, rms 3322 n 3d.
+Brika, dom 2705 Hennepin av.
+Fred J, painter, r 905 13th av s.
+Prederick, cooper Minn L O Paint Co r 243 lith av s.
+Freda, smstrs Madame Boyd, b flat 2 60 Island av w.
+Hannah, dom 2600 3d av gs.
+Harris (Rosen: & Bergman), r 716 Lyn dale av n.
+Jennie, dom 1928 Stevens av.
+John, dairy 2810 n e Johnson, r same.
+John, lab H C: Akeley Lbr Co, rms 3322
+John A, car repr C M & St.P Ry.
+John A, foreman Ankeny Blev, r 1911 1th av s.
+John P, cabtmkr Larson & Nelander, r 436 ne Jefferson.
+Julia, smstrs Madame Boyd, b flat 2 60 Island av w.
+Louis, harnessmkr L Laramee & Co, b 234 14th av s.
+Magnus, mach opr Am Bridge Co, r 1417 s 2d.
+Margaret, smstrs M & I Moeser, b 929 Nicollet av.
+Martin, mach, r 1417 s 2d.
+Mary, dom, rms 515 s 4th.
+Mary E (wid John), r 1051 n 3d.
+Mathilda, waiter 138% s 4th.
+Maud H, clk, b 2115 Bloomington av.
+Nels A, harnessmkr S B Loye & Sons rms 1007 Washn av s.
+Nils, lab, b 2017 Washn av s.
+Oscar F (P O Hammer & Co), rms 414 n e Jefferson.
+Wm, lab, r 1911 Bluff.
+Wm, cooper Frank, Tupa, r 2201 n e Marshall.
+Bergmark Adolph, clk C 8S Brackett, b 34
+Olga A (wid Charles O), mach opr E R
+Ely, b 509 n 4th
+Sylvia, student, b 509 n 4th.
+Bergquist, see also Barquist and Bjurquist.
+Albert, lab, b 521 18th av n.
+Alma A, mach opr Sterling Mnfg Co, b 700 5th av n.
+Amelia (wid Emil), r 309 Plymouth av.
+Andrew, lab Carpenter-Lamb Co, b 3049 ne California.
+Andrew P, carp Soo Shops, r 1814 4th av n.
+Anna. V, dom 1022 s 8th, b 621 18th av n.
+August G, lab Coffin’s Box & Lbr Co, b 1814 4th av n.
+Carl A, watchmkr Sven Swanson, rms 38 n 12th.
+Carl O, lab C A Smith Lbr Co, b 4105 Colfax av n.
+Carl Wy, clk N E Furn & C Co, b 2118 e en eee eee rman
+Bergquist Charles, baker, rms 37 Washn av:s.
+Charles, lab, rms 503 12th av s.
+Edward, lab, b 3029 18th av s.
+Ellen (wid Andrew), r 2001 Western av.
+Emil, lab P L Cederberg, b 2631 Washn av n.
+Mrik M, trimmer, r 612 33d av n.
+Frank, mach opr Smith & Wyman, r 745 n e Fillmore.
+Frank, candymkr § Lillibridge-Bremner
+Factory, r 913 n e 2d.
+Frank J, patternmkr Diamond Iron
+Wks, r 2016 Western av.
+Gustav, painter, r 2114 e 22d.
+Gustav, lab, r 2118 e 22d.
+Henry, blksmith M & St L R R, b 21 22% av s.
+Hilda, b 910 Laurel av.
+Hjalmer, cabtmkr Smith & Wyman, r 618 n e Fillmore.
+John, tailor A J Kelly,.r 521 18th av n.
+John, lab, r 720 30th av n.
+John, lab, b 200 s 2d.
+John A, foreman W C Ry, r 922 n 5th.
+John A, helper Am Bridge Co, r 1109 e
+John C, sismn Paris-Murton Co, r 97 n f John E, boilermkr, rr 913 18% av ne.
+J Victor, tchr Johnson School of Music
+Mary, om 2821 Cedar av.
+Nathaniel F, clk City Lbr Co, r 2001 Western av.
+Nels, lab Backus-Brooks Co, rms 2923 Washn av n.
+Nils G. carp Sweatt Mnfg Co, r 2806 e
+Ole, Jab Mpls Gas Lt Co Wks, b 21 19th av s. Se
+Oscar EB, mach opr, b 2118 e 22d.
+Oscar F, foreman Smith & Wyman, r 745 n e Fillmore.
+Otto sorter N S Woolen Mill Co, b 309 5th av s.
+Peter, lab City Water Wks, r 1914 s 8th.
+Peter B, peddler, rms 807 12th av s.
+Signa, mach opr Sterling Mnfg Co, b 700 5th av n.
+Swan, grocer 2531 Washn av n, r same.
+Wm I, stenogr McLeod & Smith, b 2016 Western av.
+Bergren, see also Berggren.
+Charles T, sec The Slocum-Bergren Co yy flat 1 1400 doth av s.
+Frank, carriage mkr Geo F Thompson
+& Son Buggy. Co, r St Louis Pk.
+Gustav, lab, b 1001 e Lake.
+John H, lab, b 3123 15th av s.
+John, paperhnegr, r 751 Washn avn.
+John, lab, b 1001 e Lake.
+Peter. mach opr Shevlin-Carpenter Co b 1415% n 5th.
+Theodore, lab, b 1001 e Lake.
+Bergseng Anton, tab, r 2119 13th av s.
+</code></pre>
+
+</td>
+</tr>
+</table>
+
 1. **Smart Column Detection**: Automatically identifies and separates text columns from scanned directory pages
 2. **Advanced OCR Processing**: Extracts text using Tesseract with custom preprocessing for historical documents
 3. **Quality Evaluation**: Provides detailed accuracy metrics and error analysis
