@@ -1,0 +1,418 @@
+{
+  "metadata": {
+    "source_file": "ground_truth/1900_0362.txt",
+    "creation_date": "2025-06-27",
+    "annotation_instructions": [
+      "CONTEXT INHERITANCE RULES:",
+      "1. If line starts with capitalized word (Smith, JONES), that's a new surname",
+      "2. If line starts with lowercase/firstname only, it inherits the previous surname",
+      "3. 'same' in address means use the previous address",
+      "4. Fill ground_truth with the COMPLETE correct information (including inherited data)",
+      "",
+      "ANNOTATION PRIORITY:",
+      "1. surname (most critical - include inherited surnames!)",
+      "2. first_name (most critical)",
+      "3. home_address (high priority - resolve 'same' references)",
+      "4. occupation (medium priority)",
+      "5. spouse_name (if applicable)",
+      "",
+      "EXAMPLE:",
+      "Line 1: 'Smith John, clk, r 123 Main st.' → surname: 'Smith'",
+      "Line 2: 'Mary, student, b same.' → surname: 'Smith' (inherited!)",
+      "Line 3: 'Wilson Frank, lab, r 456 Oak.' → surname: 'Wilson' (new surname)"
+    ],
+    "context_tracking": "enabled"
+  },
+  "entries": [
+    {
+      "line_number": 1,
+      "raw_text": "James, clk P J Kinnane, b 1607 n 4th.",
+      "context_info": {
+        "status": "NEW_SURNAME",
+        "inherited_surname": "",
+        "inherited_address": "1607 n 4th."
+      },
+      "ground_truth": {
+        "surname": "",
+        "first_name": "",
+        "spouse_name": "",
+        "home_address": "",
+        "residence_indicator": "",
+        "occupation": "",
+        "employer": "",
+        "employer_address": "",
+        "special_notes": ""
+      },
+      "annotation_guidance": {
+        "context_type": "NEW_SURNAME",
+        "surname_guidance": "Extract surname from start of line: 'James'",
+        "address_guidance": "New address specified: '1607 n 4th.'",
+        "special_notes": []
+      }
+    },
+    {
+      "line_number": 2,
+      "raw_text": "James E, trav agt, r 2804 Blaisdell av.",
+      "context_info": {
+        "status": "INHERITS_SURNAME",
+        "inherited_surname": "James",
+        "inherited_address": "2804 blaisdell av."
+      },
+      "ground_truth": {
+        "surname": "",
+        "first_name": "",
+        "spouse_name": "",
+        "home_address": "",
+        "residence_indicator": "",
+        "occupation": "",
+        "employer": "",
+        "employer_address": "",
+        "special_notes": ""
+      },
+      "annotation_guidance": {
+        "context_type": "INHERITS_SURNAME",
+        "surname_guidance": "Use inherited surname: 'James'",
+        "address_guidance": "New address specified: '2804 blaisdell av.'",
+        "special_notes": []
+      }
+    },
+    {
+      "line_number": 3,
+      "raw_text": "James H, barber Nicollet av s e cor High, b Hotel Pauly.",
+      "context_info": {
+        "status": "INHERITS_SURNAME",
+        "inherited_surname": "James",
+        "inherited_address": "hotel pauly."
+      },
+      "ground_truth": {
+        "surname": "",
+        "first_name": "",
+        "spouse_name": "",
+        "home_address": "",
+        "residence_indicator": "",
+        "occupation": "",
+        "employer": "",
+        "employer_address": "",
+        "special_notes": ""
+      },
+      "annotation_guidance": {
+        "context_type": "INHERITS_SURNAME",
+        "surname_guidance": "Use inherited surname: 'James'",
+        "address_guidance": "New address specified: 'hotel pauly.'",
+        "special_notes": []
+      }
+    },
+    {
+      "line_number": 4,
+      "raw_text": "James R, foreman Minn L O Paint Co, r 405 s e Oak.",
+      "context_info": {
+        "status": "INHERITS_SURNAME",
+        "inherited_surname": "James",
+        "inherited_address": "405 s e oak."
+      },
+      "ground_truth": {
+        "surname": "",
+        "first_name": "",
+        "spouse_name": "",
+        "home_address": "",
+        "residence_indicator": "",
+        "occupation": "",
+        "employer": "",
+        "employer_address": "",
+        "special_notes": ""
+      },
+      "annotation_guidance": {
+        "context_type": "INHERITS_SURNAME",
+        "surname_guidance": "Use inherited surname: 'James'",
+        "address_guidance": "New address specified: '405 s e oak.'",
+        "special_notes": []
+      }
+    },
+    {
+      "line_number": 5,
+      "raw_text": "James W, b Soldiers' Home.",
+      "context_info": {
+        "status": "INHERITS_SURNAME",
+        "inherited_surname": "James",
+        "inherited_address": "soldiers' home."
+      },
+      "ground_truth": {
+        "surname": "",
+        "first_name": "",
+        "spouse_name": "",
+        "home_address": "",
+        "residence_indicator": "",
+        "occupation": "",
+        "employer": "",
+        "employer_address": "",
+        "special_notes": ""
+      },
+      "annotation_guidance": {
+        "context_type": "INHERITS_SURNAME",
+        "surname_guidance": "Use inherited surname: 'James'",
+        "address_guidance": "New address specified: 'soldiers' home.'",
+        "special_notes": []
+      }
+    },
+    {
+      "line_number": 6,
+      "raw_text": "Jennie, clk S E Olson Co, b 2732 Bloomington av.",
+      "context_info": {
+        "status": "NEW_SURNAME",
+        "inherited_surname": "",
+        "inherited_address": "2732 bloomington av."
+      },
+      "ground_truth": {
+        "surname": "",
+        "first_name": "",
+        "spouse_name": "",
+        "home_address": "",
+        "residence_indicator": "",
+        "occupation": "",
+        "employer": "",
+        "employer_address": "",
+        "special_notes": ""
+      },
+      "annotation_guidance": {
+        "context_type": "NEW_SURNAME",
+        "surname_guidance": "Extract surname from start of line: 'Jennie'",
+        "address_guidance": "New address specified: '2732 bloomington av.'",
+        "special_notes": []
+      }
+    },
+    {
+      "line_number": 7,
+      "raw_text": "John H, elev opr The Plymouth, r St Paul.",
+      "context_info": {
+        "status": "INHERITS_SURNAME",
+        "inherited_surname": "Jennie",
+        "inherited_address": "st paul."
+      },
+      "ground_truth": {
+        "surname": "",
+        "first_name": "",
+        "spouse_name": "",
+        "home_address": "",
+        "residence_indicator": "",
+        "occupation": "",
+        "employer": "",
+        "employer_address": "",
+        "special_notes": ""
+      },
+      "annotation_guidance": {
+        "context_type": "INHERITS_SURNAME",
+        "surname_guidance": "Use inherited surname: 'Jennie'",
+        "address_guidance": "New address specified: 'st paul.'",
+        "special_notes": []
+      }
+    },
+    {
+      "line_number": 8,
+      "raw_text": "John H, tchr South High school, r 837 15th av s.",
+      "context_info": {
+        "status": "INHERITS_SURNAME",
+        "inherited_surname": "Jennie",
+        "inherited_address": "837 15th av s."
+      },
+      "ground_truth": {
+        "surname": "",
+        "first_name": "",
+        "spouse_name": "",
+        "home_address": "",
+        "residence_indicator": "",
+        "occupation": "",
+        "employer": "",
+        "employer_address": "",
+        "special_notes": ""
+      },
+      "annotation_guidance": {
+        "context_type": "INHERITS_SURNAME",
+        "surname_guidance": "Use inherited surname: 'Jennie'",
+        "address_guidance": "New address specified: '837 15th av s.'",
+        "special_notes": []
+      }
+    },
+    {
+      "line_number": 9,
+      "raw_text": "John M, clk S E Olson Co, b 1607 n 4th.",
+      "context_info": {
+        "status": "INHERITS_SURNAME",
+        "inherited_surname": "Jennie",
+        "inherited_address": "1607 n 4th."
+      },
+      "ground_truth": {
+        "surname": "",
+        "first_name": "",
+        "spouse_name": "",
+        "home_address": "",
+        "residence_indicator": "",
+        "occupation": "",
+        "employer": "",
+        "employer_address": "",
+        "special_notes": ""
+      },
+      "annotation_guidance": {
+        "context_type": "INHERITS_SURNAME",
+        "surname_guidance": "Use inherited surname: 'Jennie'",
+        "address_guidance": "New address specified: '1607 n 4th.'",
+        "special_notes": []
+      }
+    },
+    {
+      "line_number": 10,
+      "raw_text": "John M, mach Soo Shops, r 942 27th av n e.",
+      "context_info": {
+        "status": "INHERITS_SURNAME",
+        "inherited_surname": "Jennie",
+        "inherited_address": "942 27th av n e."
+      },
+      "ground_truth": {
+        "surname": "",
+        "first_name": "",
+        "spouse_name": "",
+        "home_address": "",
+        "residence_indicator": "",
+        "occupation": "",
+        "employer": "",
+        "employer_address": "",
+        "special_notes": ""
+      },
+      "annotation_guidance": {
+        "context_type": "INHERITS_SURNAME",
+        "surname_guidance": "Use inherited surname: 'Jennie'",
+        "address_guidance": "New address specified: '942 27th av n e.'",
+        "special_notes": []
+      }
+    },
+    {
+      "line_number": 11,
+      "raw_text": "Joseph, lab Mpls Brew Co, b 171 11th av n e.",
+      "context_info": {
+        "status": "NEW_SURNAME",
+        "inherited_surname": "",
+        "inherited_address": "171 11th av n e."
+      },
+      "ground_truth": {
+        "surname": "",
+        "first_name": "",
+        "spouse_name": "",
+        "home_address": "",
+        "residence_indicator": "",
+        "occupation": "",
+        "employer": "",
+        "employer_address": "",
+        "special_notes": ""
+      },
+      "annotation_guidance": {
+        "context_type": "NEW_SURNAME",
+        "surname_guidance": "Extract surname from start of line: 'Joseph'",
+        "address_guidance": "New address specified: '171 11th av n e.'",
+        "special_notes": []
+      }
+    },
+    {
+      "line_number": 12,
+      "raw_text": "Juliette M, student, b 3418 Park av.",
+      "context_info": {
+        "status": "INHERITS_SURNAME",
+        "inherited_surname": "Joseph",
+        "inherited_address": "3418 park av."
+      },
+      "ground_truth": {
+        "surname": "",
+        "first_name": "",
+        "spouse_name": "",
+        "home_address": "",
+        "residence_indicator": "",
+        "occupation": "",
+        "employer": "",
+        "employer_address": "",
+        "special_notes": ""
+      },
+      "annotation_guidance": {
+        "context_type": "INHERITS_SURNAME",
+        "surname_guidance": "Use inherited surname: 'Joseph'",
+        "address_guidance": "New address specified: '3418 park av.'",
+        "special_notes": []
+      }
+    },
+    {
+      "line_number": 13,
+      "raw_text": "Judson L, switchman C M & St P Ry, r 1911 s 25½.",
+      "context_info": {
+        "status": "INHERITS_SURNAME",
+        "inherited_surname": "Joseph",
+        "inherited_address": "1911 s 25½."
+      },
+      "ground_truth": {
+        "surname": "",
+        "first_name": "",
+        "spouse_name": "",
+        "home_address": "",
+        "residence_indicator": "",
+        "occupation": "",
+        "employer": "",
+        "employer_address": "",
+        "special_notes": ""
+      },
+      "annotation_guidance": {
+        "context_type": "INHERITS_SURNAME",
+        "surname_guidance": "Use inherited surname: 'Joseph'",
+        "address_guidance": "New address specified: '1911 s 25½.'",
+        "special_notes": []
+      }
+    },
+    {
+      "line_number": 14,
+      "raw_text": "J Burwell, stereotyper Mpls Journal, rms 1351 Nicollet av.",
+      "context_info": {
+        "status": "NEW_SURNAME",
+        "inherited_surname": "",
+        "inherited_address": "1911 s 25½."
+      },
+      "ground_truth": {
+        "surname": "",
+        "first_name": "",
+        "spouse_name": "",
+        "home_address": "",
+        "residence_indicator": "",
+        "occupation": "",
+        "employer": "",
+        "employer_address": "",
+        "special_notes": ""
+      },
+      "annotation_guidance": {
+        "context_type": "NEW_SURNAME",
+        "surname_guidance": "Extract surname from start of line: 'J'",
+        "address_guidance": "",
+        "special_notes": []
+      }
+    },
+    {
+      "line_number": 15,
+      "raw_text": "Mrs Laura W, stenogr Am Bridge Co, b 1016 s e 7th.",
+      "context_info": {
+        "status": "INHERITS_SURNAME",
+        "inherited_surname": "J",
+        "inherited_address": "1016 s e 7th."
+      },
+      "ground_truth": {
+        "surname": "",
+        "first_name": "",
+        "spouse_name": "",
+        "home_address": "",
+        "residence_indicator": "",
+        "occupation": "",
+        "employer": "",
+        "employer_address": "",
+        "special_notes": ""
+      },
+      "annotation_guidance": {
+        "context_type": "INHERITS_SURNAME",
+        "surname_guidance": "Use inherited surname: 'J'",
+        "address_guidance": "New address specified: '1016 s e 7th.'",
+        "special_notes": []
+      }
+    }
+  ]
+}

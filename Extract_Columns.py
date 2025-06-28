@@ -229,7 +229,7 @@ class StructuralLineDetector:
 
             # Uncomment BELOW TO Display Separator Results - DEBUGGING
             # self._plot_images(processed_images, f'Detected {direction.title()} Lines')
-            self._plot_images(line_images, f'Detected {direction.title()} Lines')
+            #self._plot_images(line_images, f'Detected {direction.title()} Lines')
 
         return results, valid_paths
 
@@ -664,7 +664,7 @@ if __name__ == "__main__":
     )
     
     # Process images to detect lines
-    results, valid_paths = detector.process_images(image_paths[-4:-2], directions=['both'])
+    results, valid_paths = detector.process_images(image_paths, directions=['both'])
     
     if not valid_paths:
         print("No valid images were processed!")
@@ -678,7 +678,7 @@ if __name__ == "__main__":
     
     # Visualize results (showing first few images)
     if extracted_data:
-        extractor.visualize_extraction(extracted_data)
+        #extractor.visualize_extraction(extracted_data)
         print(f"\nExtraction complete! Column images saved in: {extractor.output_dir}")
         print(f"Successfully processed {len(extracted_data)} images")
     else:
